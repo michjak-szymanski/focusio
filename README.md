@@ -1,3 +1,4 @@
 # FocusIO
 
-This fun project has ambitious goal to provide *"focus/pomodoro timer"* implementations with unified interface for various platforms including bunch of operating systems and programmable devices. 
+Multiplatform focus/pomodoro timer. Provides GUI as wel as CLI.
+Supports Linux, Windows and macOS.
