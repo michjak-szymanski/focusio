@@ -1,6 +1,8 @@
 package focusio.commands;
 
-import focusio.TimerService;
+import focusio.rpc.Focusio;
+import focusio.rpc.GrpcClientFactory;
+import focusio.timer.TimerService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
@@ -14,6 +16,17 @@ public class StopCommand implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Stopped timer..." + timerId);
+        var result = GrpcClientFactory.createClient().stopTimer(
+                Focusio.TimerSimpleRequest
+                        .newBuilder()
+                        .setTimerId(timerId)
+                        .build()
+        );
+        if (result.getSuccess()) {
+            System.out.println("Stopped timer " + timerId);
+        } else{
+            System.out.println("Failed to stop timer " + timerId + " !");
+        }
     }
+
 }

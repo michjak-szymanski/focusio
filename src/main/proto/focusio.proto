@@ -1,0 +1,14 @@
+option java_package = "focusio.api";
+
+service FocusioService {
+  rpc StopTimer(TimerSimpleRequest) returns (TimerSimpleResponse);
+}
+
+message TimerSimpleRequest {
+  required string timerId = 1;
+}
+
+message TimerSimpleResponse {
+  required bool success = 1;
+}
+

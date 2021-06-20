@@ -1,6 +1,6 @@
 package focusio.commands;
 
-import focusio.TimerService;
+import focusio.timer.TimerService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
