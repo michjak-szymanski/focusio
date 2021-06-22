@@ -1,4 +1,4 @@
-package focusio.rpc;
+package focusio.grpc;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -25,5 +25,6 @@ public class GrpcServer {
     public static void start() {
         SERVER.start();
         LOGGER.log(Level.INFO, "Started focusio server at port " + PORT);
+        SERVER.awaitTermination();
     }
 }

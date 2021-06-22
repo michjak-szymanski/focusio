@@ -67,4 +67,9 @@ dependencies {
     implementation("io.grpc:grpc-protobuf:1.38.0")
     implementation("io.grpc:grpc-stub:1.38.0")
     compileOnly("org.apache.tomcat:annotations-api:6.0.53")
+
+    //mapstruct
+    implementation("org.mapstruct:mapstruct:1.4.2.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    annotationProcessor("no.entur.mapstruct.spi:protobuf-spi-impl:1.14")
 }

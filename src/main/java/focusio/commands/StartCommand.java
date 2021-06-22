@@ -1,19 +1,30 @@
 package focusio.commands;
 
-import focusio.timer.TimerService;
+import focusio.api.Focusio;
+import focusio.grpc.GrpcClientFactory;
+import focusio.grpc.GrpcServer;
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 @Command(name = "start")
 public class StartCommand implements Runnable {
 
-    private final TimerService timerService = new TimerService();
-
     @Parameters(index = "0")
     String duration;
 
+    @CommandLine.Option(names = {"--detach", "-d"}, defaultValue = "false")
+    Boolean detach;
+
     @Override
     public void run() {
-        timerService.startTimer(Long.parseLong(duration));
+        var timerId = GrpcClientFactory.createClient().startTimer(
+                Focusio.TimerStartRequest.newBuilder()
+                        .setDurationMillis(Long.parseLong(duration))
+                        .setDetach(detach)
+                        .build()
+        ).getTimerId();
+
+        System.out.println("Started timer " + timerId);
     }
 }

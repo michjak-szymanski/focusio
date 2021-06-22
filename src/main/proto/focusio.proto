@@ -1,14 +1,46 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
 option java_package = "focusio.api";
 
 service FocusioService {
-  rpc StopTimer(TimerSimpleRequest) returns (TimerSimpleResponse);
+  rpc StartTimer(TimerStartRequest) returns(TimerStartResponse);
+  rpc StopTimer(TimerStopRequest) returns (google.protobuf.Empty);
+  rpc ListTimers(TimerListRequest) returns(TimerListResponse);
 }
 
-message TimerSimpleRequest {
-  required string timerId = 1;
+message TimerStartRequest {
+  int64 durationMillis = 1;
+  bool detach = 2;
 }
 
-message TimerSimpleResponse {
-  required bool success = 1;
+message TimerStopRequest {
+  string timerId = 1;
 }
 
+message TimerListRequest {
+}
+
+message TimerStartResponse {
+  string timerId = 1;
+}
+
+message TimerListResponse {
+  repeated TimerInfo timerInfo = 1;
+}
+
+message TimerInfo {
+  string timerId = 1;
+  TimerStatus status = 2;
+  int32 durationMillis = 3;
+  int32 elapsedMillis = 4;
+  google.protobuf.Timestamp startTimestamp = 5;
+}
+
+enum TimerStatus {
+  STARTED = 0;
+  STOPPED = 1;
+  FINISHED = 2;
+}

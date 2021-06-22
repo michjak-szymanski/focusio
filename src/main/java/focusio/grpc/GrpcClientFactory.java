@@ -1,5 +1,6 @@
-package focusio.rpc;
+package focusio.grpc;
 
+import focusio.api.FocusioServiceGrpc;
 import io.grpc.ManagedChannelBuilder;
 
 public class GrpcClientFactory {

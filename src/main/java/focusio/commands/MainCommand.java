@@ -6,7 +6,8 @@ import picocli.CommandLine.Command;
         StartCommand.class,
         StopCommand.class,
         PauseCommand.class,
-        ListCommand.class
+        ListCommand.class,
+        InitCommand.class
 })
 public class MainCommand {
 }
